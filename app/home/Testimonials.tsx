@@ -118,7 +118,8 @@ const testimonials = [
 const Testimonials = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
-  const testimonialsPerPage = window.innerWidth < 640 ? 2 : 3;
+  // const testimonialsPerPage = window.innerWidth < 640 ? 2 : 3;
+  const testimonialsPerPage = 3;
 
   const totalPages = Math.ceil(testimonials.length / testimonialsPerPage);
 

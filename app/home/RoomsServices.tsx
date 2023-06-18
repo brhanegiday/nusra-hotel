@@ -6,7 +6,8 @@ import { rooms } from "../utils/roomsData";
 
 const RoomsServices = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const roomsPerPage = window.innerWidth < 640 ? 4 : 6;
+  // const roomsPerPage = window.innerWidth < 640 ? 4 : 6;
+  const roomsPerPage = 6;
   const totalPages = Math.ceil(rooms.length / roomsPerPage);
   const startIndex = (currentPage - 1) * roomsPerPage;
   const endIndex = startIndex + roomsPerPage;

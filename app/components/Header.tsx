@@ -2,16 +2,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-10 py-4 px-6">
+    <nav className="relative z-10 py-5 px-6">
       <div className="container mx-auto max-w-6xl border-b-[#ddd] pb-7">
         <div className="flex justify-between">
           <div className="lg:flex items-center">
@@ -35,27 +37,47 @@ const Header = () => {
             >
               <div className="flex flex-col lg:flex-row">
                 <Link href="/" passHref legacyBehavior>
-                  <a className="text-white hover:text-gray-300 text-sm mx-3 py-2 px-4">
+                  <a
+                    className={`${
+                      pathname === "/" ? "text-[#EDA83B]" : "text-white"
+                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                  >
                     Home
                   </a>
                 </Link>
                 <Link href="/rooms" passHref legacyBehavior>
-                  <a className="text-white hover:text-gray-300 text-sm mx-3 py-2 px-4">
+                  <a
+                    className={`${
+                      pathname === "/rooms" ? "text-[#EDA83B]" : "text-white"
+                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                  >
                     Rooms
                   </a>
                 </Link>
                 <Link href="/restaurants" passHref legacyBehavior>
-                  <a className="text-white hover:text-gray-300 text-sm mx-3 py-2 px-4">
+                  <a
+                    className={`${
+                      pathname === "/restaurants"
+                        ? "text-[#EDA83B]"
+                        : "text-white"
+                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                  >
                     Restaurants
                   </a>
                 </Link>
                 <Link href="/spa" passHref legacyBehavior>
-                  <a className="text-white hover:text-gray-300 text-sm mx-3 py-2 px-4">
+                  <a
+                    className={`text-white hover:text-gray-300 text-sm mx-3 py-2 px-4`}
+                  >
                     Spa
                   </a>
                 </Link>
                 <Link href="/events" passHref legacyBehavior>
-                  <a className="text-white hover:text-gray-300 text-sm mx-3 py-2 px-4">
+                  <a
+                    className={`${
+                      pathname === "/events" ? "text-[#EDA83B]" : "text-white"
+                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                  >
                     Events
                   </a>
                 </Link>
@@ -73,17 +95,31 @@ const Header = () => {
                   </Link>
                 )}
                 <Link href="/experiences" passHref legacyBehavior>
-                  <a className="text-white hover:text-gray-300 text-sm mx-3 py-2 px-4">
+                  <a
+                    className={`${
+                      pathname === "/experiences"
+                        ? "text-[#EDA83B]"
+                        : "text-white"
+                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                  >
                     Experiences
                   </a>
                 </Link>
                 <Link href="/gallery" passHref legacyBehavior>
-                  <a className="text-white hover:text-gray-300 text-sm mx-3 py-2 px-4">
+                  <a
+                    className={`${
+                      pathname === "/gallery" ? "text-[#EDA83B]" : "text-white"
+                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                  >
                     Gallery
                   </a>
                 </Link>
                 <Link href="/contact" passHref legacyBehavior>
-                  <a className="text-white hover:text-gray-300 text-sm mx-3 py-2 px-4">
+                  <a
+                    className={`${
+                      pathname === "/contact" ? "text-[#EDA83B]" : "text-white"
+                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                  >
                     Contact
                   </a>
                 </Link>

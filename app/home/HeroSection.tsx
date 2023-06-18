@@ -6,14 +6,8 @@ type Props = {};
 
 function HeroSection({}: Props) {
   return (
-    <div className="bg-hero-pattern min-h-screen bg-cover">
-      <div
-        className="absolute inset-0 bg-opacity-80  bg-gray-900 min-h-screen"
-        // style={{
-        //   background:
-        //     "linear-gradient(92.34deg, rgba(0, 0, 0, 0) 1.67%, rgba(0, 0, 0, 0.24) 15.2%, rgba(0, 0, 0, 0.66) 27.64%, rgba(0, 0, 0, 0.66) 40.25%, rgba(0, 0, 0, 0.66) 53.78%, rgba(0, 0, 0, 0.66) 66.3%, rgba(0, 0, 0, 0.39) 76.83%, rgba(0, 0, 0, 0.24) 84.34%, rgba(0, 0, 0, 0) 97.87%)",
-        // }}
-      />
+    <div className="bg-hero-pattern min-h-screen bg-cover -mt-[112px]">
+      <div className="absolute inset-0 bg-opacity-70  bg-gray-900 min-h-screen" />
       <div className="relative overflow-hidden">
         <div className="container mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center space-y-10">
@@ -47,7 +41,7 @@ function HeroSection({}: Props) {
                   </a>
                 </Link>
               </div>
-              <div className="flex flex-col sm:flex-row justify-center mb-10 bg-white px-5 py-10 rounded-md">
+              <div className="flex flex-col sm:flex-row justify-center items-center my-10 bg-white px-5 py-10 rounded-md">
                 <div className="mb-4 sm:mr-4">
                   <label
                     htmlFor="arrivalDate"
@@ -87,14 +81,16 @@ function HeroSection({}: Props) {
                     className="py-2 px-4 rounded-lg bg-gray-100"
                   />
                 </div>
-                <button className="bg-gradient-to-r from-bean-500 to-carmine-500 hover:bg-opacity-75 text-white hover:text-gray-100 font-semibold py-1 px-8 rounded-lg">
-                  Book Stay{" "}
-                </button>
+                <div>
+                  <button className="bg-gradient-to-r from-bean-500 to-carmine-500 hover:bg-opacity-75 text-white hover:text-gray-100 font-semibold py-3 px-8 rounded-lg">
+                    Book A Stay
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="bg-gray-900 opacity-70 rounded-2xl px-6 py-8 h-96 absolute right-1 top-[30%] hidden lg:block">
+        <div className="bg-gray-900 opacity-80 rounded-2xl px-6 py-8 h-96 absolute right-1 top-[30%] hidden lg:block">
           <div className="relative h-full">
             <div>
               <div className="text-gray-300 text-lg">Up Next</div>
