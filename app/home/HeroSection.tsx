@@ -6,7 +6,7 @@ type Props = {};
 
 function HeroSection({}: Props) {
   return (
-    <div className="bg-hero-pattern min-h-screen bg-cover -mt-[112px]">
+    <div className="bg-hero-pattern min-h-screen bg-cover -mt-[130px]">
       <div className="absolute inset-0 bg-opacity-70  bg-gray-900 min-h-screen" />
       <div className="relative overflow-hidden">
         <div className="container mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">

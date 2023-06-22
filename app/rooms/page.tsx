@@ -9,7 +9,7 @@ type Props = {};
 function Page({}: Props) {
   return (
     <>
-      <div className="bg-hero pt-20 bg-cover min-h-[70vh] -mt-[110px]">
+      <div className="bg-hero pt-20 bg-cover min-h-[70vh] -mt-[115px]">
         <div className="absolute inset-0 bg-opacity-80 bg-gray-900 h-[70vh]" />
         <div className="relative">
           <div className="text-center pt-32">

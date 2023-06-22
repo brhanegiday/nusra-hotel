@@ -14,8 +14,8 @@ const Header = () => {
 
   return (
     <nav className="relative z-10 py-5 px-6">
-      <div className="container mx-auto max-w-6xl border-b-[#ddd] pb-7">
-        <div className="flex justify-between">
+      <div className="container mx-auto max-w-7xl border-b-[#ddd] pb-7">
+        <div className="flex justify-between items-center">
           <div className="lg:flex items-center">
             <div className="lg:hidden">
               <Link href="/" passHref legacyBehavior>
@@ -40,7 +40,7 @@ const Header = () => {
                   <a
                     className={`${
                       pathname === "/" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
                   >
                     Home
                   </a>
@@ -49,7 +49,7 @@ const Header = () => {
                   <a
                     className={`${
                       pathname === "/rooms" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
                   >
                     Rooms
                   </a>
@@ -60,14 +60,14 @@ const Header = () => {
                       pathname === "/restaurants"
                         ? "text-[#EDA83B]"
                         : "text-white"
-                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
                   >
                     Restaurants
                   </a>
                 </Link>
                 <Link href="/spa" passHref legacyBehavior>
                   <a
-                    className={`text-white hover:text-gray-300 text-sm mx-3 py-2 px-4`}
+                    className={`text-white hover:text-gray-300 text-md mx-3 py-2 px-4`}
                   >
                     Spa
                   </a>
@@ -76,7 +76,7 @@ const Header = () => {
                   <a
                     className={`${
                       pathname === "/events" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
                   >
                     Events
                   </a>
@@ -100,7 +100,7 @@ const Header = () => {
                       pathname === "/experiences"
                         ? "text-[#EDA83B]"
                         : "text-white"
-                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
                   >
                     Experiences
                   </a>
@@ -109,7 +109,7 @@ const Header = () => {
                   <a
                     className={`${
                       pathname === "/gallery" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
                   >
                     Gallery
                   </a>
@@ -118,7 +118,7 @@ const Header = () => {
                   <a
                     className={`${
                       pathname === "/contact" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-sm mx-3 py-2 px-4`}
+                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
                   >
                     Contact
                   </a>
@@ -165,7 +165,7 @@ const Header = () => {
             </button>
           </div>
           <div className="hidden lg:block">
-            <button className="bg-gradient-to-r from-bean-500 to-carmine-500 hover:bg-opacity-75 text-white hover:text-gray-100 font-semibold py-2 px-4 rounded-lg">
+            <button className="bg-gradient-to-r nowrap from-bean-500 to-carmine-500 hover:bg-opacity-75 text-white hover:text-gray-100  py-2 px-4 rounded-lg">
               Book Now
             </button>
           </div>
