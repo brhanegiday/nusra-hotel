@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Props = {
@@ -13,13 +14,7 @@ function Room({ title, image, description, rating, pricePerNight }: Props) {
   return (
     <div className="bg-white rounded-lg shadow-lg">
       <div className="overflow-hidden rounded-t-lg">
-        <Image
-          src={image}
-          alt={title}
-          layout="responsive"
-          width={640}
-          height={500}
-        />
+        <Image src={image} alt={title} width={640} height={500} />
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between">
@@ -44,9 +39,11 @@ function Room({ title, image, description, rating, pricePerNight }: Props) {
           </span>
         </div>
         <p className="text-gray-600 text-sm mb-4">{description}</p>
-        <button className="bg-bean-500 hover:bg-opacity-75 text-white font-semibold py-2 px-4 rounded-lg w-full">
-          View details
-        </button>
+        <Link href={`/room/${title}`} passHref>
+          <button className="bg-bean-500 hover:bg-opacity-75 text-white font-semibold py-2 px-4 rounded-lg w-full">
+            View details
+          </button>
+        </Link>
       </div>
     </div>
   );

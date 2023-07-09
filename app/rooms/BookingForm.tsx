@@ -1,48 +1,40 @@
 "use client";
-import { useState, ChangeEvent, FormEvent } from "react";
-import { HiUser, HiMail, HiUserGroup, HiHome, HiPencil } from "react-icons/hi";
-import { SiGooglemarketingplatform } from "react-icons/si";
+import { useState } from "react";
+import { HiUser, HiMail, HiUserGroup, HiHome } from "react-icons/hi";
+import { useForm } from "react-hook-form";
 import InputForm from "../components/InputForm";
 import Image from "next/image";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { ClipLoader } from "react-spinners";
 
 type BookingFormProps = {};
 
 const BookingForm: React.FC<BookingFormProps> = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [arrivalDate, setArrivalDate] = useState("");
-  const [guests, setGuests] = useState("1");
-  const [rooms, setRooms] = useState("1");
-  const [comment, setComment] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+  const handleFormSubmit = async (data: any) => {
+    setIsLoading(true);
+    try {
+      const response = await axios.post("/api/booking/", data);
+      console.log(response.data);
+      reset();
+      setIsLoading(false);
+      toast.success("Form submitted successfully!");
+    } catch (error) {
+      console.error(error);
+      toast.error("Oops! Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handleArrivalDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setArrivalDate(e.target.value);
-  };
-
-  const handleGuestsChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setGuests(e.target.value);
-  };
-
-  const handleRoomsChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setRooms(e.target.value);
-  };
-
-  const handleCommentChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission here
-  };
   const inputStyle = {
     backgroundColor: "#fff",
     border: "1px solid #dddfe2",
@@ -55,9 +47,9 @@ const BookingForm: React.FC<BookingFormProps> = () => {
 
   const inputformData = [
     {
-      label: "Name",
+      label: "Full name",
       type: "text",
-      id: "name",
+      name: "name",
       placeholder: "Please enter your name",
       Icon: (
         <HiUser size={23} className="absolute text-gray-500 top-3 left-3" />
@@ -66,7 +58,7 @@ const BookingForm: React.FC<BookingFormProps> = () => {
     {
       label: "Email",
       type: "email",
-      id: "email",
+      name: "email",
       placeholder: "Enter your email",
       Icon: (
         <HiMail size={23} className="absolute text-gray-500 top-3 left-3" />
@@ -75,7 +67,7 @@ const BookingForm: React.FC<BookingFormProps> = () => {
     {
       label: "Arrival Date",
       type: "date",
-      id: "arrivalDate",
+      name: "arrivalDate",
       Icon: (
         <HiHome size={23} className="absolute text-gray-500 top-3 left-3" />
       ),
@@ -84,14 +76,21 @@ const BookingForm: React.FC<BookingFormProps> = () => {
 
   return (
     <div className="-mt-[200px] bg-white max-w-6xl mx-auto p-10 pt-6 border-[#D8D8D8] rounded-lg shadow-md relative">
+      <ToastContainer />
       <div className="flex gap-x-2 py-6 w-full border-b items-center mb-10">
         <Image width={30} height={30} src={"/assets/gps.svg"} alt="Booking" />
         <h1 className="text-2xl font-semibold">Booking Form</h1>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(handleFormSubmit)}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {inputformData.map((form, index) => (
-            <InputForm key={index} {...form} />
+            <InputForm
+              key={index}
+              {...form}
+              name={form.name}
+              register={register}
+              errors={errors}
+            />
           ))}
           <div>
             <label
@@ -102,15 +101,17 @@ const BookingForm: React.FC<BookingFormProps> = () => {
             </label>
             <div className="relative">
               <select
-                id="guests"
+                {...register("guests")}
+                name="guests"
                 className="input-airbnb"
-                value={guests}
-                onChange={handleGuestsChange}
                 style={inputStyle}
               >
                 <option value="1">1 Guest</option>
                 <option value="2">2 Guests</option>
                 <option value="3">3 Guests</option>
+                <option value="4">4 Guests</option>
+                <option value="5">5 Guests</option>
+                <option value="6">6 Guests</option>
               </select>
               <HiUserGroup
                 size={22}
@@ -127,15 +128,15 @@ const BookingForm: React.FC<BookingFormProps> = () => {
             </label>
             <div className="relative">
               <select
-                id="rooms"
+                {...register("rooms")}
+                name="rooms"
                 className="input-airbnb"
-                value={rooms}
-                onChange={handleRoomsChange}
                 style={inputStyle}
               >
                 <option value="1">1 Room</option>
                 <option value="2">2 Rooms</option>
                 <option value="3">3 Rooms</option>
+                <option value="4">4 Rooms</option>
               </select>
               <HiHome
                 size={22}
@@ -153,12 +154,11 @@ const BookingForm: React.FC<BookingFormProps> = () => {
           </label>
           <div className="relative">
             <textarea
-              id="comment"
-              className="input-airbnb textarea-airbnb"
+              {...register("comment")}
+              name="comment"
+              className="input-airbnb textarea-airbnb text-gray-800"
               rows={5}
               placeholder="Additional info or comment"
-              value={comment}
-              onChange={handleCommentChange}
               style={{
                 backgroundColor: "#fff",
                 border: "1px solid #dddfe2",
@@ -167,17 +167,29 @@ const BookingForm: React.FC<BookingFormProps> = () => {
                 width: "100%",
                 transition: "border-color 0.3s ease-in-out",
                 resize: "vertical",
-                paddingLeft: "2.3rem",
+                paddingLeft: "1rem",
               }}
             />
-            <HiPencil className="absolute text-gray-500 top-3 left-3" />
           </div>
         </div>
         <button
           type="submit"
           className="bg-bean-500 text-white font-medium py-3 px-12 rounded-md transition duration-300 ease-in-out hover:bg-bean-600"
+          disabled={isLoading}
         >
-          Book Now
+          {isLoading ? (
+            <>
+              <ClipLoader
+                size={14}
+                color="white"
+                loading={true}
+                className="mr-2"
+              />
+              Submitting...
+            </>
+          ) : (
+            "Book Now"
+          )}
         </button>
       </form>
     </div>

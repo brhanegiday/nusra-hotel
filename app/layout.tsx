@@ -2,6 +2,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

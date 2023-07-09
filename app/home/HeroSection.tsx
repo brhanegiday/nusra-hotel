@@ -6,7 +6,7 @@ type Props = {};
 
 function HeroSection({}: Props) {
   return (
-    <div className="bg-hero-pattern min-h-screen bg-cover -mt-[130px]">
+    <div className="bg-hero-pattern min-h-screen bg-cover -mt-[110px]">
       <div className="absolute inset-0 bg-opacity-70  bg-gray-900 min-h-screen" />
       <div className="relative overflow-hidden">
         <div className="container mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ function HeroSection({}: Props) {
                   <input
                     type="date"
                     id="arrivalDate"
-                    className="py-2 px-4 rounded-lg bg-gray-100"
+                    className="py-2 px-4 rounded-lg bg-gray-600"
                   />
                 </div>
                 <div className="mb-4 sm:mr-4">
@@ -65,7 +65,7 @@ function HeroSection({}: Props) {
                   <input
                     type="date"
                     id="departureDate"
-                    className="py-2 px-4 rounded-lg bg-gray-100"
+                    className="py-2 px-4 rounded-lg bg-gray-600"
                   />
                 </div>
                 <div className="mb-4 sm:mr-4">
@@ -78,7 +78,7 @@ function HeroSection({}: Props) {
                   <input
                     type="number"
                     id="numberOfPeople"
-                    className="py-2 px-4 rounded-lg bg-gray-100"
+                    className="py-2 px-4 rounded-lg bg-gray-600"
                   />
                 </div>
                 <div>

@@ -64,7 +64,7 @@ const Services = () => {
                   />
                 </div>
               </div>
-              <div className="bg-secondary">
+              <div>
                 <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
               </div>
             </div>
