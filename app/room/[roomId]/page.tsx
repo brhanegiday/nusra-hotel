@@ -1,8 +1,6 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 import {
   FaWifi,
   FaShuttleVan,
@@ -37,11 +35,8 @@ type RoomPageProps = {
   roomData: RoomData;
 };
 
-function RoomPage({}: RoomPageProps) {
-  const params = useParams();
-
-  const roomData: RoomData = {
-    id: params.roomId,
+function Room() {
+  const roomData = {
     title: "Standard Deluxe Room",
     image: "/assets/rooms/308541178.jpg",
     rating: 4.5,
@@ -166,4 +161,4 @@ function RoomPage({}: RoomPageProps) {
   );
 }
 
-export default RoomPage;
+export default Room;
