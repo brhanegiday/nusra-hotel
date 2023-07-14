@@ -3,10 +3,41 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { useState } from "react";
 
-type Props = {};
+const images = [
+  "/assets/images/hero-pattern.jpg",
+  "/assets/images/1666000424slide1.jpg",
+  "/assets/images/1666000471slide2.jpg",
+  "/assets/images/1666000518slide3.jpg",
+  "/assets/images/1666000549slide4.jpg",
+];
 
-function HeroSection({}: Props) {
+const HeroSection = () => {
+  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // const handleNextImage = () => {
+  //   setCurrentImageIndex((prevIndex) =>
+  //     prevIndex === images.length - 1 ? 0 : prevIndex + 1
+  //   );
+  // };
+
+  // const currentImage = images[currentImageIndex];
+  const [backgroundClass, setBackgroundClass] = useState("bg-slide1");
+  const backgroundClasses = [
+    "bg-slide1",
+    "bg-slide2",
+    "bg-slide3",
+    "bg-slide4",
+    "bg-slide5",
+  ];
+
+  const handleNextImage = () => {
+    const currentIndex = backgroundClasses.indexOf(backgroundClass);
+    const nextIndex = (currentIndex + 1) % backgroundClasses.length;
+    setBackgroundClass(backgroundClasses[nextIndex]);
+  };
+
   const {
     register,
     handleSubmit,
@@ -39,9 +70,11 @@ function HeroSection({}: Props) {
   };
 
   return (
-    <div className="bg-hero-pattern min-h-screen bg-cover -mt-[110px]">
+    <div
+      className={`${backgroundClass} min-h-screen bg-opacity-75 bg-cover -mt-[112px] transition-all duration-500 ease-in-out  filter brightness-75 contrast-125`}
+    >
       <ToastContainer />
-      <div className="absolute inset-0 bg-opacity-70  bg-gray-900 min-h-screen" />
+      <div className="absolute inset-0 bg-opacity-40 bg-black min-h-screen" />
       <div className="relative overflow-hidden">
         <div className="container mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center space-y-10">
@@ -56,7 +89,7 @@ function HeroSection({}: Props) {
               <h1 className="text-2xl sm:text-4xl md:text-6xl text-white font-bold mb-8">
                 Nusra Hotel & Spa
               </h1>
-              <p className="text-white text-md max-w-4xl mx-auto mb-10">
+              <p className="text-white text-md max-w-4xl mx-auto font-medium mb-10">
                 Welcome to Nusra Hotel & Spa, a sanctuary of luxury and
                 tranquility nestled in the heart of a picturesque destination.
                 Discover a world where opulence meets serenity, where impeccable
@@ -161,18 +194,17 @@ function HeroSection({}: Props) {
                 Rooms
               </h3>
             </div>
-            <div className="text-white absolute left-0 top-[80%]">
-              <Link href="/rooms" passHref legacyBehavior>
-                <a>
-                  <HiOutlineArrowNarrowRight color="#fff" size={32} />
-                </a>
-              </Link>
+            <div
+              className="text-white absolute left-0 top-[80%] cursor-pointer"
+              onClick={handleNextImage}
+            >
+              <HiOutlineArrowNarrowRight color="#fff" size={32} />
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default HeroSection;

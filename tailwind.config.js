@@ -50,7 +50,11 @@ module.exports = {
         },
       },
       backgroundImage: {
-        "hero-pattern": "url('/assets/images/hero-pattern.jpg')",
+        slide1: "url('/assets/images/hero-pattern.jpg')",
+        slide2: "url('/assets/images/1666000424slide1.jpg')",
+        slide3: "url('/assets/images/1666000471slide2.jpg')",
+        slide4: "url('/assets/images/1666000518slide3.jpg')",
+        slide5: "url('/assets/images/1666000549slide4.jpg')",
         hero: "url('/assets/images/hero.jpg')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
