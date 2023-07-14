@@ -39,8 +39,8 @@ const Header = () => {
                 <Link href="/" passHref legacyBehavior>
                   <a
                     className={`${
-                      pathname === "/" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
+                      pathname === "/" ? "text-secondary-500" : "text-white"
+                    } hover:text-secondary-500 text-md mx-3 py-2 px-4`}
                   >
                     Home
                   </a>
@@ -48,8 +48,10 @@ const Header = () => {
                 <Link href="/rooms" passHref legacyBehavior>
                   <a
                     className={`${
-                      pathname === "/rooms" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
+                      pathname === "/rooms"
+                        ? "text-secondary-500"
+                        : "text-white"
+                    } hover:text-secondary-500 text-md mx-3 py-2 px-4`}
                   >
                     Rooms
                   </a>
@@ -58,9 +60,9 @@ const Header = () => {
                   <a
                     className={`${
                       pathname === "/restaurants"
-                        ? "text-[#EDA83B]"
+                        ? "text-secondary-500"
                         : "text-white"
-                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
+                    } hover:text-secondary-500 text-md mx-3 py-2 px-4`}
                   >
                     Restaurants
                   </a>
@@ -75,8 +77,10 @@ const Header = () => {
                 <Link href="/events" passHref legacyBehavior>
                   <a
                     className={`${
-                      pathname === "/events" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
+                      pathname === "/events"
+                        ? "text-secondary-500"
+                        : "text-white"
+                    } hover:text-secondary-500 text-md mx-3 py-2 px-4`}
                   >
                     Events
                   </a>
@@ -98,9 +102,9 @@ const Header = () => {
                   <a
                     className={`${
                       pathname === "/experiences"
-                        ? "text-[#EDA83B]"
+                        ? "text-secondary-500"
                         : "text-white"
-                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
+                    } hover:text-secondary-500 text-md mx-3 py-2 px-4`}
                   >
                     Experiences
                   </a>
@@ -108,8 +112,10 @@ const Header = () => {
                 <Link href="/gallery" passHref legacyBehavior>
                   <a
                     className={`${
-                      pathname === "/gallery" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
+                      pathname === "/gallery"
+                        ? "text-secondary-500"
+                        : "text-white"
+                    } hover:text-secondary-500 text-md mx-3 py-2 px-4`}
                   >
                     Gallery
                   </a>
@@ -117,8 +123,10 @@ const Header = () => {
                 <Link href="/contact" passHref legacyBehavior>
                   <a
                     className={`${
-                      pathname === "/contact" ? "text-[#EDA83B]" : "text-white"
-                    } hover:text-[#EDA83B] text-md mx-3 py-2 px-4`}
+                      pathname === "/contact"
+                        ? "text-secondary-500"
+                        : "text-white"
+                    } hover:text-secondary-500 text-md mx-3 py-2 px-4`}
                   >
                     Contact
                   </a>

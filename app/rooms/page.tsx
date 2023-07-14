@@ -1,12 +1,35 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import BookingForm from "./BookingForm";
-import { rooms } from "../utils/roomsData";
 import Room from "../components/Room";
 import KeyFeatures from "./KeyFeatures";
+import axios from "axios";
+import { Rooms } from "../types/Types";
 
 type Props = {};
 
 function Page({}: Props) {
+  const [roomsData, setRoomsData] = useState<Rooms[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const fetchRooms = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await axios.get("/api/rooms/");
+      const data = await response.data.rooms;
+      setRoomsData(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchRooms();
+  }, []);
+
   return (
     <>
       <div className="bg-hero pt-20 bg-cover min-h-[70vh] -mt-[115px]">
@@ -22,12 +45,13 @@ function Page({}: Props) {
           </div>
         </div>
       </div>
-      <div className="bg-white py-6">
+      {isLoading && <h2 className="text-xl">Loading...</h2>}
+      <div className="bg-[#F8F8FA] py-6">
         <div className="container mx-auto max-w-7xl px-4 py-16">
           <BookingForm />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-20">
-            {rooms.slice(0, 5).map((room) => (
-              <Room key={room.id} {...room} />
+            {roomsData.slice(0, 5).map((room, id) => (
+              <Room key={id} {...room} />
             ))}
           </div>
           <div className="pt-20">

@@ -3,7 +3,7 @@ import HeroSection from "./home/HeroSection";
 import Location from "./home/Location";
 import RoomsServices from "./home/RoomsServices";
 import Services from "./home/Services";
-import Testimonials from "./home/Testimonials";
+import Testimonials from "./home/Reviews";
 import WhyNusra from "./home/WhyNusra";
 
 export default function Home() {

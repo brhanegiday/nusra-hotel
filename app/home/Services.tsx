@@ -52,18 +52,21 @@ const Services = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {services.map((service) => (
-            <div key={service.id} className="bg-white rounded-lg px-4 py-8">
-              <div className="mb-6">
+            <div
+              key={service.id}
+              className="bg-white rounded-lg px-4 py-8 overflow-hidden transition-shadow duration-300 hover:shadow-xl"
+            >
+              <Link href={service.link} className="mb-6" passHref>
                 <div className="relative h-48 sm:h-64">
                   <Image
                     src={service.image}
                     alt={service.title}
-                    layout="fill"
-                    objectFit="cover"
+                    // width={500} height={400}
+                    fill={true}
                     className="rounded-md"
                   />
                 </div>
-              </div>
+              </Link>
               <div>
                 <h3 className="text-xl font-semibold mb-4">{service.title}</h3>
               </div>
