@@ -4,7 +4,7 @@ import BookingForm from "./BookingForm";
 import Room from "../components/Room";
 import KeyFeatures from "./KeyFeatures";
 import axios from "axios";
-import { Rooms } from "../types/Types";
+import { Rooms } from "../types/Rooms";
 
 type Props = {};
 

@@ -2,6 +2,7 @@
   "name": "nusra-hotel",
   "version": "0.1.0",
   "private": true,
+  "author": "Brhane Giday",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -24,6 +25,8 @@
     "react-icons": "^4.9.0",
     "react-spinners": "^0.13.8",
     "react-toastify": "^9.1.3",
+    "strapi-sdk-javascript": "^0.3.3",
+    "strapi-sdk-js": "^2.2.0",
     "typescript": "5.1.3"
   },
   "devDependencies": {

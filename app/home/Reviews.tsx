@@ -4,17 +4,18 @@ import Image from "next/image";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { FaQuoteRight } from "react-icons/fa";
 import axios from "axios";
-import { Reviews } from "../types/Types";
+import { Reviews } from "../types/Reviews";
 import { getRandomNumber } from "../utils/getRandomNumber";
+import urlBuilder from "../utils/urlBuilder";
 
 const Reviews = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [reviewsData, setReviewsData] = useState<Reviews[]>([]);
+  const [reviewsData, setReviewsData] = useState<Reviews>();
   const [isLoading, setIsLoading] = useState(false);
 
   // const reviewsPerPage = window.innerWidth < 640 ? 2 : 3;
   const reviewsPerPage = 3;
-  const totalPages = Math.ceil(reviewsData.length / reviewsPerPage);
+  const totalPages = Math.ceil(reviewsData?.data?.length! / reviewsPerPage);
 
   const handleNextPage = () => {
     setCurrentPage((prevPage) =>
@@ -35,8 +36,10 @@ const Reviews = () => {
   const fetchReviews = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("/api/reviews/");
-      const data = await response.data.reviews;
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_STRAPI_API}/reviews?populate=*`
+      );
+      const data = await response.data;
       setReviewsData(data);
       setIsLoading(false);
     } catch (error) {
@@ -52,7 +55,7 @@ const Reviews = () => {
 
   const startIndex = currentPage * reviewsPerPage;
   const endIndex = startIndex + reviewsPerPage;
-  const currentReviews = reviewsData?.slice(startIndex, endIndex);
+  const currentReviews = reviewsData?.data.slice(startIndex, endIndex);
 
   return (
     <section className="py-20 bg-gray-100">
@@ -86,12 +89,12 @@ const Reviews = () => {
         {isLoading && <h2 className="text-xl">Loading...</h2>}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {currentReviews.map((review, index) => (
+          {currentReviews?.map((review, index) => (
             <div key={review.id} className="bg-white rounded-lg p-6 h-72">
               <div className="flex items-center mb-4 space-x-4 justify-between">
                 <Image
-                  src={`/assets/avatar/Avatar-${getRandomNumber(1, 10)}.png`}
-                  alt={review.name}
+                  src={urlBuilder(review.attributes.avatar.data.attributes.url)}
+                  alt={review.attributes.avatar.data.attributes.name}
                   width={60}
                   height={60}
                   className="rounded-full"
@@ -100,13 +103,19 @@ const Reviews = () => {
                   <FaQuoteRight className="text-bean-500" />
                 </div>
               </div>
-              <h3 className="text-lg font-semibold">{review.name}</h3>
+              <h3 className="text-lg font-semibold">
+                {review.attributes.name}
+              </h3>
               <div className="mb-4">
-                <p className="text-gray-700">{`"${review.description}"`}</p>
+                <p className="text-gray-700">{`"${review.attributes.comment}"`}</p>
               </div>
               <div className="flex items-center justify-between">
-                <p className="text-gray-500 text-sm">{review.rating} Stars</p>
-                <p className="text-gray-500 text-sm">- {review.position}</p>
+                <p className="text-gray-500 text-sm">
+                  {review.attributes.rating} Stars
+                </p>
+                <p className="text-gray-500 text-sm">
+                  - {review.attributes.position}
+                </p>
               </div>
             </div>
           ))}

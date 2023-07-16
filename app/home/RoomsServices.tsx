@@ -3,19 +3,19 @@ import { useEffect, useState, use } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Room from "../components/Room";
 import axios from "axios";
-import { Rooms } from "../types/Types";
+import { Rooms } from "../types/Rooms";
 
 const RoomsServices = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [roomsData, setRoomsData] = useState<Rooms[]>([]);
+  const [roomsData, setRoomsData] = useState<Rooms>();
   const [isLoading, setIsLoading] = useState(false);
 
   // const roomsPerPage = window.innerWidth < 640 ? 4 : 6;
   const roomsPerPage = 6;
-  const totalPages = Math.ceil(roomsData?.length / roomsPerPage);
+  const totalPages = Math.ceil(roomsData?.data?.length! / roomsPerPage);
   const startIndex = (currentPage - 1) * roomsPerPage;
   const endIndex = startIndex + roomsPerPage;
-  const currentRooms = roomsData?.slice(startIndex, endIndex);
+  const currentRooms = roomsData?.data.slice(startIndex, endIndex);
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -28,8 +28,10 @@ const RoomsServices = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get("/api/rooms/");
-      const data = await response.data.rooms;
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_STRAPI_API}/rooms?populate=*`
+      );
+      const data = await response.data;
       setRoomsData(data);
       setIsLoading(false);
     } catch (error) {
@@ -73,8 +75,8 @@ const RoomsServices = () => {
         {isLoading && <h2 className="text-xl">Loading...</h2>}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentRooms.map((room, i) => (
-            <Room key={i} {...room} />
+          {currentRooms?.map((room, i) => (
+            <Room key={i} {...room.attributes} />
           ))}
         </div>
       </div>

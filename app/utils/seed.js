@@ -50,13 +50,10 @@ const Room = mongoose.models.Room || mongoose.model("Room", roomSchema);
 
 async function seed() {
   // REPLACE THE MONGODB_URI VALUE WITH ACTUAL ENV VALUE
-  await mongoose.connect(
-    `mongodb+srv://brhane_giday:f3JeEfznI43jOdYm@bookings.4bxuei2.mongodb.net/nusra-hotel?retryWrites=true&w=majority`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  );
+  await mongoose.connect(`${process.env.MONGODB_URI}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
   // Clear existing data from the collections, if desired
   await Room.deleteMany({});
@@ -82,12 +79,12 @@ async function seed() {
     const room = {
       id: String(i),
       title: `Standard Deluxe Room ${i}`,
-      // image: readImageFile(
-      //   `/assets/rooms/Standard Deluxe Room-${
-      //     Math.floor(Math.random() * (11 - 1 + 1)) + 1
-      //   }.png`
-      // ),
-      image: "IMAge File here",
+      image: readImageFile(
+        `/assets/rooms/Standard Deluxe Room-${
+          Math.floor(Math.random() * (11 - 1 + 1)) + 1
+        }.png`
+      ),
+      // image: "IMAge File here",
       rating: generateRating(),
       pricePerNight: Math.floor(Math.random() * (300 - 80 + 1)) + 80,
       description:

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { getRandomNumber } from "../utils/getRandomNumber";
+import urlBuilder from "../utils/urlBuilder";
 
 type Props = {
   title: string;
@@ -17,10 +17,10 @@ function Room({ title, image, description, rating, pricePerNight }: Props) {
       <Link href={`/room/${title}`} passHref>
         <div className="overflow-hidden rounded-t-lg h-[14vw]">
           <Image
-            src={`/assets/rooms/Standard Deluxe Room-${getRandomNumber(
-              1,
-              15
-            )}.png`}
+            // src={urlBuilder(image.data.attributes.url)}
+            src={
+              "http://localhost:1337/uploads/Standard_Deluxe_Room_13_e16e71772f.png"
+            }
             alt={title}
             className="rounded-lg"
             width={500}
@@ -28,6 +28,8 @@ function Room({ title, image, description, rating, pricePerNight }: Props) {
           />
         </div>
       </Link>
+      {/* {urlBuilder(image.data.attributes.url)} */}
+
       <div className="p-6">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-semibold mb-2">{title}</h3>

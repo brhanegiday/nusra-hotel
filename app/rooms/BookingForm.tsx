@@ -22,13 +22,19 @@ const BookingForm: React.FC<BookingFormProps> = () => {
   const handleFormSubmit = async (data: any) => {
     setIsLoading(true);
     try {
-      const response = await axios.post("/api/booking/", data);
-      console.log(response.data);
+      const response = await axios.post(
+        // `${process.env.NEXT_PUBLIC_STRAPI_API}/bookings/`,
+        "http://localhost:1337/api/bookings/",
+        JSON.stringify(data)
+      );
+
+      console.log("response.data");
       reset();
       setIsLoading(false);
       toast.success("Form submitted successfully!");
     } catch (error) {
       console.error(error);
+
       toast.error("Oops! Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
@@ -49,7 +55,7 @@ const BookingForm: React.FC<BookingFormProps> = () => {
     {
       label: "Full name",
       type: "text",
-      name: "name",
+      name: "fullName",
       placeholder: "Please enter your name",
       Icon: (
         <HiUser size={23} className="absolute text-gray-500 top-3 left-3" />
@@ -94,24 +100,24 @@ const BookingForm: React.FC<BookingFormProps> = () => {
           ))}
           <div>
             <label
-              htmlFor="guests"
+              htmlFor="numberOfGuests"
               className="block text-gray-700 font-medium mb-1"
             >
               Guests
             </label>
             <div className="relative">
               <select
-                {...register("guests")}
-                name="guests"
+                {...register("numberOfGuests")}
+                name="numberOfGuests"
                 className="input-airbnb"
                 style={inputStyle}
               >
-                <option value="1">1 Guest</option>
-                <option value="2">2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4">4 Guests</option>
-                <option value="5">5 Guests</option>
-                <option value="6">6 Guests</option>
+                <option value={"1"}>1 Guest</option>
+                <option value={"2"}>2 Guests</option>
+                <option value={"3"}>3 Guests</option>
+                <option value={"4"}>4 Guests</option>
+                <option value={"5"}>5 Guests</option>
+                <option value={"6"}>6 Guests</option>
               </select>
               <HiUserGroup
                 size={22}
@@ -121,22 +127,22 @@ const BookingForm: React.FC<BookingFormProps> = () => {
           </div>
           <div>
             <label
-              htmlFor="rooms"
+              htmlFor="numberOfRooms"
               className="block text-gray-700 font-medium mb-1"
             >
               Rooms
             </label>
             <div className="relative">
               <select
-                {...register("rooms")}
-                name="rooms"
+                {...register("numberOfRooms")}
+                name="numberOfRooms"
                 className="input-airbnb"
                 style={inputStyle}
               >
-                <option value="1">1 Room</option>
-                <option value="2">2 Rooms</option>
-                <option value="3">3 Rooms</option>
-                <option value="4">4 Rooms</option>
+                <option value={"1"}>1 Room</option>
+                <option value={"2"}>2 Rooms</option>
+                <option value={"3"}>3 Rooms</option>
+                <option value={"4"}>4 Rooms</option>
               </select>
               <HiHome
                 size={22}
