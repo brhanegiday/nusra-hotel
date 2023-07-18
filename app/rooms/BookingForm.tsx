@@ -22,13 +22,10 @@ const BookingForm: React.FC<BookingFormProps> = () => {
   const handleFormSubmit = async (data: any) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(
-        // `${process.env.NEXT_PUBLIC_STRAPI_API}/bookings/`,
-        "http://localhost:1337/api/bookings/",
-        JSON.stringify(data)
-      );
+      await axios.post(`${process.env.NEXT_PUBLIC_STRAPI_API}/bookings`, {
+        data,
+      });
 
-      console.log("response.data");
       reset();
       setIsLoading(false);
       toast.success("Form submitted successfully!");

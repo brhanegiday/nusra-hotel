@@ -5,7 +5,6 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { FaQuoteRight } from "react-icons/fa";
 import axios from "axios";
 import { Reviews } from "../types/Reviews";
-import { getRandomNumber } from "../utils/getRandomNumber";
 import urlBuilder from "../utils/urlBuilder";
 
 const Reviews = () => {
@@ -92,7 +91,7 @@ const Reviews = () => {
           {currentReviews?.map((review, index) => (
             <div key={review.id} className="bg-white rounded-lg p-6 h-72">
               <div className="flex items-center mb-4 space-x-4 justify-between">
-                <Image
+                <img
                   src={urlBuilder(review.attributes.avatar.data.attributes.url)}
                   alt={review.attributes.avatar.data.attributes.name}
                   width={60}

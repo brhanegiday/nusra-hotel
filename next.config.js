@@ -1,21 +1,20 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  publicRuntimeConfig: {
-    NEXT_PUBLIC_STRAPI_URL: process.env.NEXT_PUBLIC_STRAPI_URL,
-  },
-  env: {
-    NEXT_PUBLIC_STRAPI_URL: process.env.NEXT_PUBLIC_STRAPI_URL,
-  },
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   publicRuntimeConfig: {
+//     NEXT_PUBLIC_STRAPI_URL: process.env.NEXT_PUBLIC_STRAPI_URL,
+//   },
+//   env: {
+//     NEXT_PUBLIC_STRAPI_URL: process.env.NEXT_PUBLIC_STRAPI_URL,
+//   },
+//   images: {
+//     domains: ["localhost"],
+//   },
+// };
+
+// module.exports = nextConfig;
+
+module.exports = {
   images: {
-    domains: [process.env.NEXT_PUBLIC_STRAPI_URL, "localhost"],
-    // remotePatterns: [
-    //   {
-    //     protocol: "http",
-    //     hostname: "localhost",
-    //     port: "*",
-    //   },
-    // ],
+    domains: ["localhost"],
   },
 };
-
-module.exports = nextConfig;

@@ -3,27 +3,25 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import urlBuilder from "../utils/urlBuilder";
 
-const images = [
-  "/assets/images/hero-pattern.jpg",
-  "/assets/images/1666000424slide1.jpg",
-  "/assets/images/1666000471slide2.jpg",
-  "/assets/images/1666000518slide3.jpg",
-  "/assets/images/1666000549slide4.jpg",
-];
+// const images = [
+//   "/assets/images/hero-pattern.jpg",
+//   "/assets/images/1666000424slide1.jpg",
+//   "/assets/images/1666000471slide2.jpg",
+//   "/assets/images/1666000518slide3.jpg",
+//   "/assets/images/1666000549slide4.jpg",
+// ];
 
 const HeroSection = () => {
-  // const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // const handleNextImage = () => {
-  //   setCurrentImageIndex((prevIndex) =>
-  //     prevIndex === images.length - 1 ? 0 : prevIndex + 1
-  //   );
-  // };
-
-  // const currentImage = images[currentImageIndex];
   const [backgroundClass, setBackgroundClass] = useState("bg-slide1");
+  const [backgroundImages, setBackgroundImages] = useState([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const backgroundClasses = [
     "bg-slide1",
     "bg-slide2",
@@ -32,10 +30,40 @@ const HeroSection = () => {
     "bg-slide5",
   ];
 
+  useEffect(() => {
+    const fetchBackgroundImages = async () => {
+      setIsLoading(true);
+
+      try {
+        const response = await axios(
+          `${process.env.NEXT_PUBLIC_STRAPI_API}/headers?populate=*`
+        );
+        const data = await response.data;
+        const images = data.data[0].attributes.sliders.data.map(
+          (slide: any) => slide.attributes.url
+        );
+
+        setBackgroundImages(images);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchBackgroundImages();
+  }, []);
+
+  // const handleNextImage = () => {
+  //   const currentIndex = backgroundClasses.indexOf(backgroundClass);
+  //   const nextIndex = (currentIndex + 1) % backgroundClasses.length;
+  //   setBackgroundClass(backgroundClasses[nextIndex]);
+  // };
   const handleNextImage = () => {
-    const currentIndex = backgroundClasses.indexOf(backgroundClass);
-    const nextIndex = (currentIndex + 1) % backgroundClasses.length;
-    setBackgroundClass(backgroundClasses[nextIndex]);
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex + 1) % backgroundImages.length
+    );
   };
 
   const {
@@ -71,10 +99,20 @@ const HeroSection = () => {
 
   return (
     <div
-      className={`${backgroundClass} min-h-screen bg-opacity-75 bg-cover -mt-[112px] transition-all duration-500 ease-in-out  filter brightness-75 contrast-125`}
+      className={`${
+        backgroundImages.length > 0 && "bg-slide1"
+      } min-h-screen bg-opacity-75 bg-cover -mt-[112px] transition-all ${
+        isLoading ? "bg-slide1" : ""
+      }
+      duration-500 ease-in-out  filter backdrop-brightness-110 contrast-200`}
+      style={{
+        backgroundImage: `url(${urlBuilder(
+          backgroundImages[currentImageIndex]
+        )})`,
+      }}
     >
       <ToastContainer />
-      <div className="absolute inset-0 bg-opacity-40 bg-black min-h-screen" />
+      <div className="absolute inset-0 bg-opacity-60 bg-black min-h-screen" />
       <div className="relative overflow-hidden">
         <div className="container mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center space-y-10">
@@ -89,7 +127,7 @@ const HeroSection = () => {
               <h1 className="text-2xl sm:text-4xl md:text-6xl text-white font-bold mb-8">
                 Nusra Hotel & Spa
               </h1>
-              <p className="text-white text-md max-w-4xl mx-auto font-medium mb-10">
+              <p className="text-white text-md max-w-4xl mx-auto mb-10">
                 Welcome to Nusra Hotel & Spa, a sanctuary of luxury and
                 tranquility nestled in the heart of a picturesque destination.
                 Discover a world where opulence meets serenity, where impeccable
@@ -123,7 +161,7 @@ const HeroSection = () => {
                     <input
                       type="date"
                       id="arrivalDate"
-                      className="py-2 px-4 rounded-lg bg-white border"
+                      className="py-2 px-4 rounded-lg bg-white border border-gray-400"
                       {...register("arrivalDate", { required: true })}
                     />
                     {errors.arrivalDate && (
@@ -140,7 +178,7 @@ const HeroSection = () => {
                     <input
                       type="date"
                       id="departureDate"
-                      className="py-2 px-4 rounded-lg bg-white border"
+                      className="py-2 px-4 rounded-lg bg-white border border-gray-400"
                       {...register("departureDate", { required: true })}
                     />
                     {errors.departureDate && (
@@ -160,7 +198,7 @@ const HeroSection = () => {
                       defaultValue={1}
                       type="number"
                       id="numberOfPeople"
-                      className="py-2 px-4 rounded-lg bg-white border"
+                      className="py-2 px-4 rounded-lg bg-white border border-gray-400"
                       {...register("numberOfPeople", {
                         required: true,
                         min: 1,
