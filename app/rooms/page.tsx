@@ -9,15 +9,17 @@ import { Rooms } from "../types/Rooms";
 type Props = {};
 
 function Page({}: Props) {
-  const [roomsData, setRoomsData] = useState<Rooms[]>([]);
+  const [roomsData, setRoomsData] = useState<Rooms>();
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchRooms = async () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get("/api/rooms/");
-      const data = await response.data.rooms;
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_STRAPI_API}/rooms?populate=*`
+      );
+      const data = await response.data;
       setRoomsData(data);
       setIsLoading(false);
     } catch (error) {
@@ -50,8 +52,8 @@ function Page({}: Props) {
         <div className="container mx-auto max-w-7xl px-4 py-16">
           <BookingForm />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-20">
-            {roomsData.slice(0, 5).map((room, id) => (
-              <Room key={id} {...room} />
+            {roomsData?.data.slice(0, 5).map((room, id) => (
+              <Room key={id} {...room.attributes} />
             ))}
           </div>
           <div className="pt-20">
