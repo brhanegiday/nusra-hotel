@@ -16,7 +16,7 @@ function Room({ title, image, description, rating, pricePerNight }: Props) {
     <div className="bg-white rounded-lg shadow-lg">
       <Link href={`/room/${title}`} passHref>
         <div className="overflow-hidden rounded-t-lg h-[14vw]">
-          <img
+          <Image
             src={urlBuilder(image.data?.attributes.url)}
             alt={title}
             className="rounded-lg"

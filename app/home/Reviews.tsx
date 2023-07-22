@@ -91,7 +91,7 @@ const Reviews = () => {
           {currentReviews?.map((review, index) => (
             <div key={review.id} className="bg-white rounded-lg p-6 h-72">
               <div className="flex items-center mb-4 space-x-4 justify-between">
-                <img
+                <Image
                   src={urlBuilder(review.attributes.avatar.data.attributes.url)}
                   alt={review.attributes.avatar.data.attributes.name}
                   width={60}

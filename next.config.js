@@ -15,6 +15,6 @@
 
 module.exports = {
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "nusra-api.onrender.com"],
   },
 };
