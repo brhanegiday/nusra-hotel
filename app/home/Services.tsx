@@ -56,7 +56,7 @@ const Services = () => {
               key={service.id}
               className="bg-white rounded-lg px-4 py-8 overflow-hidden transition-shadow duration-300 hover:shadow-xl"
             >
-              <Link href={service.link} className="mb-6" passHref>
+              <Link href={"#"} className="mb-6" passHref>
                 <div className="relative h-48 sm:h-64">
                   <Image
                     src={service.image}
