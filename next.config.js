@@ -15,6 +15,6 @@
 
 module.exports = {
   images: {
-    domains: ["localhost", "nusra-api.onrender.com"],
+    domains: ["localhost", "nusra-api.onrender.com", "res.cloudinary.com"],
   },
 };
