@@ -3,19 +3,19 @@ import { useEffect, useState, use } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import Room from "../components/Room";
 import axios from "axios";
-import { Rooms } from "../types/Rooms";
+import { Root } from "../types/Rooms";
 
 const RoomsServices = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [roomsData, setRoomsData] = useState<Rooms>();
+  const [roomsData, setRoomsData] = useState<Root>();
   const [isLoading, setIsLoading] = useState(false);
 
   // const roomsPerPage = window.innerWidth < 640 ? 4 : 6;
   const roomsPerPage = 6;
-  const totalPages = Math.ceil(roomsData?.data?.length! / roomsPerPage);
+  const totalPages = Math.ceil(roomsData?.rooms?.length! / roomsPerPage);
   const startIndex = (currentPage - 1) * roomsPerPage;
   const endIndex = startIndex + roomsPerPage;
-  const currentRooms = roomsData?.data.slice(startIndex, endIndex);
+  const currentRooms = roomsData?.rooms?.slice(startIndex, endIndex);
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -29,7 +29,7 @@ const RoomsServices = () => {
 
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_STRAPI_API}/rooms?populate=*`
+        `${process.env.NEXT_PUBLIC_API_URL}/rooms`
       );
       const data = await response.data;
       setRoomsData(data);
@@ -76,7 +76,7 @@ const RoomsServices = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentRooms?.map((room, i) => (
-            <Room key={i} {...room.attributes} />
+            <Room key={i} {...room} />
           ))}
         </div>
       </div>

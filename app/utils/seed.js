@@ -1,7 +1,7 @@
-// const mongoose = require("mongoose");
-import mongoose from "mongoose";
-import fs from "fs";
-import path from "path";
+const mongoose = require("mongoose");
+// import mongoose from "mongoose";
+const fs = require("fs");
+const path = require("path");
 
 // const faker = require("faker");
 
@@ -50,10 +50,13 @@ const Room = mongoose.models.Room || mongoose.model("Room", roomSchema);
 
 async function seed() {
   // REPLACE THE MONGODB_URI VALUE WITH ACTUAL ENV VALUE
-  await mongoose.connect(`${process.env.MONGODB_URI}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(
+    `mongodb+srv://brhane_giday:rSlB5XS0xBe7bmcA@bookings.4bxuei2.mongodb.net/nusra-hotel?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  );
 
   // Clear existing data from the collections, if desired
   await Room.deleteMany({});
@@ -68,10 +71,22 @@ async function seed() {
   };
 
   const readImageFile = (filePath) => {
-    const imagePath = path.join(process.cwd(), "public", filePath);
-    const imageBuffer = fs.readFileSync(imagePath);
-    const base64 = imageBuffer.toString("base64");
-    return base64;
+    const imagePath = path.join(
+      process.cwd(),
+      "..",
+      "..",
+      "public",
+      "assets",
+      filePath
+    );
+    try {
+      const imageBuffer = fs.readFileSync(imagePath);
+      const base64 = imageBuffer.toString("base64");
+      return base64;
+    } catch (error) {
+      console.error("Error reading image file:", error);
+      return null;
+    }
   };
 
   // Seed rooms
@@ -80,11 +95,11 @@ async function seed() {
       id: String(i),
       title: `Standard Deluxe Room ${i}`,
       image: readImageFile(
-        `/assets/rooms/Standard Deluxe Room-${
+        `/rooms/Standard Deluxe Room-${
           Math.floor(Math.random() * (11 - 1 + 1)) + 1
         }.png`
       ),
-      // image: "IMAge File here",
+      // image: "IMAge File here", Standard Deluxe Room-1
       rating: generateRating(),
       pricePerNight: Math.floor(Math.random() * (300 - 80 + 1)) + 80,
       description:
@@ -113,8 +128,7 @@ async function seed() {
   for (let i = 1; i <= 10; i++) {
     const review = {
       roomId: Math.floor(Math.random() * 32) + 1, // Randomly assign a room ID from 1 to 32
-      // avatar: readImageFile(`/assets/avatar/Avatar-${i}.png`),
-      avatar: "Avatar Image here",
+      avatar: readImageFile(`/avatar/Avatar-${i}.png`),
       name: `Lorem ipsum dolor ${i}`,
       position: `Guest dolor ${i}`,
       description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consectetur magna urna, quis volutpat enim scelerisque et ${i}`,

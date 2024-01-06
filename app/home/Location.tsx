@@ -36,18 +36,18 @@ const Location = () => {
               <div className="flex items-center">
                 <HiOutlinePhone size={20} className="text-gray-800 mr-2" />
                 <p className="text-gray-800">
-                  +251 90 377 7799 | +251 90 377 7766 | +251 11 557 0920
+                  +251 90 XXX XXXX | +251 90 XXX XXXX | +251 11 XXX XXXX
                 </p>
               </div>
             </div>
           </div>
-          <div className="md:w-1/5 relative aspect-w-4 aspect-h-3">
+          <div className="md:w-2/6 relative aspect-w-4 aspect-h-3">
             <div className="rounded-lg overflow-hidden">
               <Image
-                src="/assets/our-location.png"
+                src="/assets/images 1.png"
                 alt="Location Image"
                 width={300}
-                height={100}
+                height={150}
               />
             </div>
           </div>

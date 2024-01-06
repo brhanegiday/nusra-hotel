@@ -4,12 +4,12 @@ import BookingForm from "./BookingForm";
 import Room from "../components/Room";
 import KeyFeatures from "./KeyFeatures";
 import axios from "axios";
-import { Rooms } from "../types/Rooms";
+import { Root } from "../types/Rooms";
 
 type Props = {};
 
 function Page({}: Props) {
-  const [roomsData, setRoomsData] = useState<Rooms>();
+  const [roomsData, setRoomsData] = useState<Root>();
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchRooms = async () => {
@@ -17,7 +17,7 @@ function Page({}: Props) {
 
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_STRAPI_API}/rooms?populate=*`
+        `${process.env.NEXT_PUBLIC_API_URL}/rooms`
       );
       const data = await response.data;
       setRoomsData(data);
@@ -47,13 +47,13 @@ function Page({}: Props) {
           </div>
         </div>
       </div>
-      {isLoading && <h2 className="text-xl">Loading...</h2>}
       <div className="bg-[#F8F8FA] py-6">
         <div className="container mx-auto max-w-7xl px-4 py-16">
           <BookingForm />
+          {isLoading && <h2 className="text-xl pt-5">Loading...</h2>}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-20">
-            {roomsData?.data.slice(0, 5).map((room, id) => (
-              <Room key={id} {...room.attributes} />
+            {roomsData?.rooms.slice(0, 5).map((room, id) => (
+              <Room key={id} {...room} />
             ))}
           </div>
           <div className="pt-20">

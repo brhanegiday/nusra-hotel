@@ -20,11 +20,13 @@ const BookingForm: React.FC<BookingFormProps> = () => {
   } = useForm();
 
   const handleFormSubmit = async (data: any) => {
+    console.log("DATA",data);
     setIsLoading(true);
+
+
     try {
-      await axios.post(`${process.env.NEXT_PUBLIC_STRAPI_API}/bookings`, {
-        data,
-      });
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/booking/`, data,
+      );
 
       reset();
       setIsLoading(false);
@@ -32,10 +34,11 @@ const BookingForm: React.FC<BookingFormProps> = () => {
     } catch (error) {
       console.error(error);
 
-      toast.error("Oops! Something went wrong. Please try again.");
+      toast.error("Oops! Something went wrong.");
     } finally {
       setIsLoading(false);
     }
+
   };
 
   const inputStyle = {
@@ -52,7 +55,7 @@ const BookingForm: React.FC<BookingFormProps> = () => {
     {
       label: "Full name",
       type: "text",
-      name: "fullName",
+      name: "name",
       placeholder: "Please enter your name",
       Icon: (
         <HiUser size={23} className="absolute text-gray-500 top-3 left-3" />
@@ -97,15 +100,15 @@ const BookingForm: React.FC<BookingFormProps> = () => {
           ))}
           <div>
             <label
-              htmlFor="numberOfGuests"
+              htmlFor="guests"
               className="block text-gray-700 font-medium mb-1"
             >
               Guests
             </label>
             <div className="relative">
               <select
-                {...register("numberOfGuests")}
-                name="numberOfGuests"
+                {...register("guests")}
+                name="guests"
                 className="input-airbnb"
                 style={inputStyle}
               >
@@ -124,15 +127,15 @@ const BookingForm: React.FC<BookingFormProps> = () => {
           </div>
           <div>
             <label
-              htmlFor="numberOfRooms"
+              htmlFor="rooms"
               className="block text-gray-700 font-medium mb-1"
             >
               Rooms
             </label>
             <div className="relative">
               <select
-                {...register("numberOfRooms")}
-                name="numberOfRooms"
+                {...register("rooms")}
+                name="rooms"
                 className="input-airbnb"
                 style={inputStyle}
               >

@@ -17,7 +17,7 @@ import urlBuilder from "../utils/urlBuilder";
 
 const HeroSection = () => {
   const [backgroundClass, setBackgroundClass] = useState("bg-slide1");
-  const [backgroundImages, setBackgroundImages] = useState([]);
+  const [backgroundImages, setBackgroundImages] = useState(["bg-slide1"]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +36,7 @@ const HeroSection = () => {
 
       try {
         const response = await axios(
-          `${process.env.NEXT_PUBLIC_STRAPI_API}/headers?populate=*`
+          `${process.env.NEXT_PUBLIC_API_URL}/headers`
         );
         const data = await response.data;
         const images = data.data[0].attributes.sliders.data.map(
@@ -55,16 +55,16 @@ const HeroSection = () => {
     fetchBackgroundImages();
   }, []);
 
-  // const handleNextImage = () => {
-  //   const currentIndex = backgroundClasses.indexOf(backgroundClass);
-  //   const nextIndex = (currentIndex + 1) % backgroundClasses.length;
-  //   setBackgroundClass(backgroundClasses[nextIndex]);
-  // };
   const handleNextImage = () => {
-    setCurrentImageIndex(
-      (prevIndex) => (prevIndex + 1) % backgroundImages.length
-    );
+    const currentIndex = backgroundClasses.indexOf(backgroundClass);
+    const nextIndex = (currentIndex + 1) % backgroundClasses.length;
+    setBackgroundClass(backgroundClasses[nextIndex]);
   };
+  // const handleNextImage = () => {
+  //   setCurrentImageIndex(
+  //     (prevIndex) => (prevIndex + 1) % backgroundImages.length
+  //   );
+  // };
 
   const {
     register,
@@ -90,29 +90,15 @@ const HeroSection = () => {
       return;
     }
 
-    // Here you can perform actions with the form data, such as sending it to a server or storing it in a state variable.
-    // console.log("Booking details:", data);
-
-    // Reset the form after handling the booking
     reset();
   };
 
   return (
     <div
-      className={`${
-        backgroundImages.length > 0 && "bg-slide1"
-      } min-h-screen bg-opacity-75 bg-cover -mt-[112px] transition-all ${
-        isLoading ? "bg-slide1" : ""
-      }
-      duration-500 ease-in-out  filter backdrop-brightness-110 contrast-200`}
-      style={{
-        backgroundImage: `url(${urlBuilder(
-          backgroundImages[currentImageIndex]
-        )})`,
-      }}
+      className="bg-gradient-to-r from-bean-500 to-primary-500 min-h-screen bg-opacity-80 -mt-[112px] 
+    transition-all duration-500 ease-in-out filter backdrop-brightness-110 contrast-200"
     >
       <ToastContainer />
-      <div className="absolute inset-0 bg-opacity-60 bg-black min-h-screen" />
       <div className="relative overflow-hidden">
         <div className="container mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center space-y-10">
@@ -159,7 +145,7 @@ const HeroSection = () => {
                       Arrival Date
                     </label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       id="arrivalDate"
                       className="py-2 px-4 rounded-lg bg-white border border-gray-400"
                       {...register("arrivalDate", { required: true })}
@@ -176,7 +162,7 @@ const HeroSection = () => {
                       Departure Date
                     </label>
                     <input
-                      type="date"
+                      type="datetime-local"
                       id="departureDate"
                       className="py-2 px-4 rounded-lg bg-white border border-gray-400"
                       {...register("departureDate", { required: true })}
