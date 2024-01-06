@@ -2,9 +2,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 
-const Header = () => {
+type Props = {
+  bg: string;
+};
+
+const Header = ({ bg }: Props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -13,7 +17,11 @@ const Header = () => {
   };
 
   return (
-    <nav className="relative z-10 py-5 px-6">
+    <nav
+      className={`${
+        bg ? "bg-gradient-to-r from-blue-500 to-green-500" : ""
+      } relative z-10 py-5 px-6`}
+    >
       <div className="container mx-auto max-w-7xl border-b-[#ddd] pb-7">
         <div className="flex justify-between items-center">
           <div className="lg:flex items-center">
@@ -65,13 +73,6 @@ const Header = () => {
                     } hover:text-secondary-500 text-md mx-3 py-2 px-4`}
                   >
                     Restaurants
-                  </a>
-                </Link>
-                <Link href="/spa" passHref legacyBehavior>
-                  <a
-                    className={`text-white hover:text-gray-300 text-md mx-3 py-2 px-4`}
-                  >
-                    Spa
                   </a>
                 </Link>
                 <Link href="/events" passHref legacyBehavior>

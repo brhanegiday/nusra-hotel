@@ -38,7 +38,9 @@ type RoomPageProps = {
 function Room() {
   const roomData = {
     title: "Standard Deluxe Room",
-    image: "/assets/rooms/308541178.jpg",
+    image: `/assets/rooms/Standard Deluxe Room-${
+      Math.floor(Math.random() * (11 - 1 + 1)) + 1
+    }.png`,
     rating: 4.5,
     pricePerNight: 170,
     description:
@@ -59,16 +61,26 @@ function Room() {
     ],
     houseRules: ["No smoking", "No pets", "No parties"],
     additionalPhotos: [
-      "/assets/rooms/462660529.jpg",
-      "/assets/rooms/deluxe-room.webp",
-      "/assets/rooms/308547785.jpg",
-      "/assets/rooms/434789805.jpg",
+      `/assets/rooms/Standard Deluxe Room-${
+        Math.floor(Math.random() * (11 - 1 + 1)) + 1
+      }.png`,
+      `/assets/rooms/Standard Deluxe Room-${
+        Math.floor(Math.random() * (11 - 1 + 1)) + 1
+      }.png`,
+      `/assets/rooms/Standard Deluxe Room-${
+        Math.floor(Math.random() * (11 - 1 + 1)) + 1
+      }.png`,
+      `/assets/rooms/Standard Deluxe Room-${
+        Math.floor(Math.random() * (11 - 1 + 1)) + 1
+      }.png`,
     ],
   };
 
   return (
-    <div>
-      <div className="container mx-auto max-w-7xl px-4 py-16">
+    <>
+      <div className="bg-gradient-to-r from-bean-700 to-primary-400 bg-opacity-80 min-h-[80px] -mt-[112px]"></div>
+
+      <div className="container mx-auto max-w-7xl px-4 py-16 pt-32">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Image
             src={roomData.image}
@@ -157,7 +169,7 @@ function Room() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

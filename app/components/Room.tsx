@@ -19,7 +19,6 @@ function Room({ title, image, description, rating, pricePerNight }: Props) {
           <Image
             // src={urlBuilder(image.data?.attributes.url)}
             src={`data:image/png;base64, ${image}`}
-
             alt={title}
             className="rounded-lg"
             width={500}
