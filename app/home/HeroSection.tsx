@@ -95,7 +95,7 @@ const HeroSection = () => {
 
   return (
     <div
-      className="bg-gradient-to-r from-bean-500 to-primary-500 min-h-screen bg-opacity-80 -mt-[112px] 
+      className="bg-gradient-to-r from-bean-500 to-primary-500 min-h-screen bg-opacity-80 -mt-[115px] 
     transition-all duration-500 ease-in-out filter backdrop-brightness-110 contrast-200"
     >
       <ToastContainer />

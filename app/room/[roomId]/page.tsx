@@ -78,7 +78,7 @@ function Room() {
 
   return (
     <>
-      <div className="bg-gradient-to-r from-bean-700 to-primary-400 bg-opacity-80 min-h-[80px] -mt-[112px]"></div>
+      <div className="bg-gradient-to-r from-bean-700 to-primary-400 bg-opacity-80 min-h-[80px] -mt-[115px]"></div>
 
       <div className="container mx-auto max-w-7xl px-4 py-16 pt-32">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
