@@ -1,0 +1,210 @@
+[{
+  "_id": {
+    "$oid": "64a9685d70f605457c7376fa"
+  },
+  "name": "Giday",
+  "email": "brhane5giday@gmail.com",
+  "arrivalDate": {
+    "$date": "2023-07-21T00:00:00.000Z"
+  },
+  "guests": 1,
+  "rooms": 1,
+  "comment": "",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64a99edb70f605457c737718"
+  },
+  "name": "Birhane Gidey",
+  "email": "brhane5giday@gmail.com",
+  "arrivalDate": {
+    "$date": "2023-07-12T00:00:00.000Z"
+  },
+  "guests": 1,
+  "rooms": 1,
+  "comment": "werrthjgjh",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64a99ede70f605457c73771a"
+  },
+  "name": "Birhane Gidey",
+  "email": "brhane5giday@gmail.com",
+  "arrivalDate": {
+    "$date": "2023-07-12T00:00:00.000Z"
+  },
+  "guests": 1,
+  "rooms": 1,
+  "comment": "werrthjgjh",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64a9a11070f605457c73771c"
+  },
+  "name": "Birhane Gidey",
+  "email": "brhane5giday@gmail.com",
+  "arrivalDate": {
+    "$date": "2023-07-20T00:00:00.000Z"
+  },
+  "guests": 4,
+  "rooms": 2,
+  "comment": "",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64aaf8784a81bce35420d66d"
+  },
+  "name": "Birhane Gidey",
+  "email": "brhane5giday@gmail.com",
+  "arrivalDate": {
+    "$date": "2023-07-15T00:00:00.000Z"
+  },
+  "guests": 3,
+  "rooms": 3,
+  "comment": "",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64aeefab9953e4d09558875d"
+  },
+  "name": "Brhane giday",
+  "email": "brhane111@gmail.com",
+  "arrivalDate": {
+    "$date": "2023-07-22T00:00:00.000Z"
+  },
+  "guests": 3,
+  "rooms": 4,
+  "comment": "Test comment",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64aef88b9953e4d09558876a"
+  },
+  "name": "Brhane giday",
+  "email": "brhane111@gmail.com",
+  "arrivalDate": {
+    "$date": "2023-07-22T00:00:00.000Z"
+  },
+  "guests": 3,
+  "rooms": 4,
+  "comment": "Test comment",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "64b30c8b0b0f02e0495b339d"
+  },
+  "name": "Fiz",
+  "email": "1232fee@gmail.com",
+  "arrivalDate": {
+    "$date": "2023-08-02T00:00:00.000Z"
+  },
+  "guests": 3,
+  "rooms": 1,
+  "comment": "",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65993b81455384213800e606"
+  },
+  "name": "delphine nyaboke",
+  "email": "dnyaboke@andrew.cmu.edu",
+  "arrivalDate": {
+    "$date": "2024-01-14T00:00:00.000Z"
+  },
+  "guests": 1,
+  "rooms": 1,
+  "comment": "booked to delphine",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65993c23455384213800e608"
+  },
+  "name": "delphine nyaboke",
+  "email": "dnyaboke@andrew.cmu.edu",
+  "arrivalDate": {
+    "$date": "2024-01-08T00:00:00.000Z"
+  },
+  "guests": 3,
+  "rooms": 3,
+  "comment": "booked to me",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "659944cc455384213800e617"
+  },
+  "name": "delphine nyaboke",
+  "email": "dnyaboke@andrew.cmu.edu",
+  "arrivalDate": {
+    "$date": "2024-01-08T00:00:00.000Z"
+  },
+  "guests": 3,
+  "rooms": 1,
+  "comment": "",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65994512455384213800e619"
+  },
+  "name": "delphine nyaboke",
+  "email": "bgiday@andrew.cmu.edu",
+  "arrivalDate": {
+    "$date": "2024-01-14T00:00:00.000Z"
+  },
+  "guests": 1,
+  "rooms": 1,
+  "comment": "nice",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "659949feff10d8e6f9b27dff"
+  },
+  "name": "delphine nyaboke",
+  "email": "dnyaboke@andrew.cmu.edu",
+  "arrivalDate": {
+    "$date": "2024-01-08T00:00:00.000Z"
+  },
+  "guests": 3,
+  "rooms": 1,
+  "comment": "vdf",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65995a790c927731c92cebb4"
+  },
+  "name": "Giday brhane",
+  "email": "bgiday@andrew.cmu.edu",
+  "arrivalDate": {
+    "$date": "2024-01-07T00:00:00.000Z"
+  },
+  "guests": 1,
+  "rooms": 1,
+  "comment": "",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "659fb0d70639ed5a43aadb12"
+  },
+  "name": "brhane_giday",
+  "email": "bgiday@andrew.cmu.edu",
+  "arrivalDate": {
+    "$date": "2024-01-14T00:00:00.000Z"
+  },
+  "guests": 6,
+  "rooms": 4,
+  "comment": "Thityhth",
+  "__v": 0
+}]

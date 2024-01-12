@@ -50,13 +50,10 @@ const Room = mongoose.models.Room || mongoose.model("Room", roomSchema);
 
 async function seed() {
   // REPLACE THE MONGODB_URI VALUE WITH ACTUAL ENV VALUE
-  await mongoose.connect(
-    `mongodb+srv://brhane_giday:rSlB5XS0xBe7bmcA@bookings.4bxuei2.mongodb.net/nusra-hotel?retryWrites=true&w=majority`,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  );
+  await mongoose.connect(`${process.env.MONGODB_URI}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
   // Clear existing data from the collections, if desired
   await Room.deleteMany({});
